@@ -21,7 +21,7 @@ skip_commits:
 services:
 
 # ==============================
-version: 0.1.0.av.{build}
+version: 0.1.0.{build}
   
 pull_requests:
   do_not_increment_build_number: true

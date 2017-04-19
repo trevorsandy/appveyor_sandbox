@@ -1,0 +1,108 @@
+# master
+artifacts:
+  - path: '*.nupkg'
+
+assembly_info:
+  assembly_version: '{version}'
+  assembly_file_version: '{version}'
+  assembly_informational_version: '{version}'
+  file: AssemblyInfo.*
+  patch: true
+  
+skip_tags: true
+
+cache:
+  - packages -> **\packages.config
+  - C:\downloads -> appveyor.yml
+
+skip_commits:
+  message: /README.md edited online/
+
+services:
+
+# ==============================
+version: 0.1.0.av.{build}
+  
+pull_requests:
+  do_not_increment_build_number: true
+
+branches:
+  only:
+    - master
+
+image: Visual Studio 2015
+
+shallow_clone: true
+
+matrix:
+  fast_finish: true
+  
+environment:
+  guiDefs: POV_RAY_IS_AUTOBUILD=1;POV_RAY_BUILD_ID="av$(APPVEYOR_BUILD_NUMBER)";BUILT_BY="AppVeyor";
+  cuiDefs: $(guiDefs)_CONSOLE=1;
+  guiProj: TestYml/TestYml.sln # windows/vs2015/povray.sln
+  cuiProj: TestYml/TestYml.sln # windows/vs2015/console.vcxproj
+  access_token:
+    secure: 2P3xGiV8AeMqHAle3AtLKOwJsRpsOnaAbdbq9R9i9zOqeByMEBNrUW3OxL58LYtv
+  git_email:
+    secure: txbxfY1+jesIECfe5J3lfzNw+qb/LAbTgYDe8yUMIoVq49u/AcvasVBhR0UPOvbf
+  matrix:
+  # Graphic User Interface (GUI) build matrix
+  - PovBuildProj: $(guiProj)
+    PovBuildDefs: $(guiDefs)
+    configuration: Release
+    platform: x64  
+    bin_dir: bin64
+    artifact_suffix: -Win64
+  - PovBuildProj: $(guiProj)
+    PovBuildDefs: $(guiDefs)
+    configuration: Release-SSE2
+    platform: Win32
+    bin_dir: bin32
+    artifact_suffix: -Win32-sse2
+  - PovBuildProj: $(guiProj)
+    PovBuildDefs: $(guiDefs)
+    configuration: Release
+    platform: Win32
+    bin_dir: bin32
+    artifact_suffix: -Win32	
+  # Console User Interface (CUI) build matrix
+  - PovBuildProj: $(cuiProj)
+    PovBuildDefs: $(cuiDefs)
+    configuration: Release
+    platform: x64  
+    bin_dir: bin64
+    artifact_suffix: -Win64
+  - PovBuildProj: $(cuiProj)
+    PovBuildDefs: $(cuiDefs)
+    configuration: Release-SSE2
+    platform: Win32
+    bin_dir: bin32
+    artifact_suffix: -Win32-sse2
+  - PovBuildProj: $(cuiProj)
+    PovBuildDefs: $(cuiDefs)
+    configuration: Release
+    platform: Win32
+    bin_dir: bin32
+    artifact_suffix: -Win32
+
+before_build:
+
+build:
+  project: $(PovBuildProj)
+  parallel: true
+  publish_nuget: true
+  verbosity: quiet
+    
+test:
+  assemblies:
+    - '**\*.Tests.dll'
+        
+# ==============================
+on_success:
+  - ps: git config --global user.email "$($env:git_email)"
+  - ps: git config --global user.name "trevorsandy"
+  - ps: git config --global credential.helper store
+  - ps: Add-Content "$env:USERPROFILE\.git-credentials" "https://$($env:access_token):x-oauth-basic@github.com`n"
+  - ps: git tag $($env:appveyor_build_version) $($env:APPVEYOR_REPO_COMMIT)
+  - ps: git push origin --tags --quiet

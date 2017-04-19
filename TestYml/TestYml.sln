@@ -1,4 +1,4 @@
-﻿
+
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.31101.0
@@ -15,19 +15,29 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{2029CD
 	EndProjectSection
 EndProject
 Global
-	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution		
 		Debug|Any CPU = Debug|Any CPU
-		Release|Any CPU = Release|Any CPU
+		Release|Win32 = Release|Win32
+		Release|x64 = Release|x64
+		Release-SSE2|Win32 = Release-SSE2|Win32
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{AA1F98A8-CF60-400A-B637-CB8AAEFAFD79}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{AA1F98A8-CF60-400A-B637-CB8AAEFAFD79}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{AA1F98A8-CF60-400A-B637-CB8AAEFAFD79}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{AA1F98A8-CF60-400A-B637-CB8AAEFAFD79}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AA1F98A8-CF60-400A-B637-CB8AAEFAFD79}.Release|Win32.ActiveCfg = Release|Win32
+		{AA1F98A8-CF60-400A-B637-CB8AAEFAFD79}.Release|Win32.Build.0 = Release|Win32
+		{AA1F98A8-CF60-400A-B637-CB8AAEFAFD79}.Release|x64.ActiveCfg = Release|x64
+		{AA1F98A8-CF60-400A-B637-CB8AAEFAFD79}.Release|x64.Build.0 = Release|x64
+		{AA1F98A8-CF60-400A-B637-CB8AAEFAFD79}.Release-SSE2|Win32.ActiveCfg = Release-SSE2|Win32
+		{AA1F98A8-CF60-400A-B637-CB8AAEFAFD79}.Release-SSE2|Win32.Build.0 = Release-SSE2|Win32
 		{73A7F737-AFD5-417A-91AF-B80B7FADA19C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{73A7F737-AFD5-417A-91AF-B80B7FADA19C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{73A7F737-AFD5-417A-91AF-B80B7FADA19C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{73A7F737-AFD5-417A-91AF-B80B7FADA19C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{73A7F737-AFD5-417A-91AF-B80B7FADA19C}.Release|Win32.ActiveCfg = Release|Win32
+		{73A7F737-AFD5-417A-91AF-B80B7FADA19C}.Release|Win32.Build.0 = Release|Win32
+		{73A7F737-AFD5-417A-91AF-B80B7FADA19C}.Release|x64.ActiveCfg = Release|x64
+		{73A7F737-AFD5-417A-91AF-B80B7FADA19C}.Release|x64.Build.0 = Release|x64
+		{73A7F737-AFD5-417A-91AF-B80B7FADA19C}.Release-SSE2|Win32.ActiveCfg = Release-SSE2|Win32
+		{73A7F737-AFD5-417A-91AF-B80B7FADA19C}.Release-SSE2|Win32.Build.0 = Release-SSE2|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

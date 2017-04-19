@@ -43,7 +43,7 @@ environment:
   guiProj: TestYml/TestYml.sln # windows/vs2015/povray.sln
   cuiProj: TestYml/TestYml.sln # windows/vs2015/console.vcxproj
   access_token:
-    secure: 2P3xGiV8AeMqHAle3AtLKOwJsRpsOnaAbdbq9R9i9zOqeByMEBNrUW3OxL58LYtv
+    secure: rnf4qpF81ISjm8q13OgkAaoKZReXpjODhU9fbGFMhMydHrda1ezLubGXRU9OKGu4
   git_email:
     secure: txbxfY1+jesIECfe5J3lfzNw+qb/LAbTgYDe8yUMIoVq49u/AcvasVBhR0UPOvbf
   matrix:
@@ -104,5 +104,5 @@ on_success:
   - ps: git config --global user.name "trevorsandy"
   - ps: git config --global credential.helper store
   - ps: Add-Content "$env:USERPROFILE\.git-credentials" "https://$($env:access_token):x-oauth-basic@github.com`n"
-  - ps: git tag $($env:appveyor_build_version) $($env:APPVEYOR_REPO_COMMIT)
-  - ps: git push origin --tags --quiet
+#  - ps: git tag $($env:appveyor_build_version) $($env:APPVEYOR_REPO_COMMIT)
+#  - ps: git push origin --tags --quiet

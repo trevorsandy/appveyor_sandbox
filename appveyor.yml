@@ -86,6 +86,10 @@ environment:
     bin_dir: bin32
     artifact_suffix: -Win32
 
+install:
+  - ECHO PovBuildProj: %PovBuildProj%
+  - ECHO PovBuildDefs: %PovBuildDefs%
+
 before_build:
 
 build:
@@ -104,5 +108,5 @@ on_success:
   - ps: git config --global user.name "trevorsandy"
   - ps: git config --global credential.helper store
   - ps: Add-Content "$env:USERPROFILE\.git-credentials" "https://$($env:access_token):x-oauth-basic@github.com`n"
-#  - ps: git tag $($env:appveyor_build_version) $($env:APPVEYOR_REPO_COMMIT)
-#  - ps: git push origin --tags --quiet
+  - ps: git tag $($env:appveyor_build_version) $($env:APPVEYOR_REPO_COMMIT)
+  - ps: git push origin --tags --quiet

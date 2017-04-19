@@ -32,7 +32,7 @@ branches:
 
 image: Visual Studio 2015
 
-shallow_clone: true
+#shallow_clone: true
 
 matrix:
   fast_finish: true
@@ -87,8 +87,8 @@ environment:
     artifact_suffix: -Win32
 
 install:
-  - ECHO PovBuildProj %PovBuildProj%
-  - ECHO PovBuildDefs %PovBuildDefs%
+  - ECHO PovBuildProj = %PovBuildProj%
+  - ECHO PovBuildDefs = %PovBuildDefs%
 
 before_build:
 
@@ -96,7 +96,7 @@ build:
   project: $(PovBuildProj)
   parallel: true
   publish_nuget: true
-  verbosity: quiet
+  verbosity: normal
     
 test:
   assemblies:
@@ -108,5 +108,5 @@ on_success:
   - ps: git config --global user.name "trevorsandy"
   - ps: git config --global credential.helper store
   - ps: Add-Content "$env:USERPROFILE\.git-credentials" "https://$($env:access_token):x-oauth-basic@github.com`n"
-  - ps: git tag $($env:appveyor_build_version) $($env:APPVEYOR_REPO_COMMIT)
-  - ps: git push origin --tags --quiet
+#  - ps: git tag $($env:appveyor_build_version) $($env:APPVEYOR_REPO_COMMIT)
+#  - ps: git push origin --tags --quiet

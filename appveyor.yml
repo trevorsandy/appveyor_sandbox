@@ -87,8 +87,8 @@ environment:
     artifact_suffix: -Win32
 
 install:
-  - ECHO PovBuildProj: %PovBuildProj%
-  - ECHO PovBuildDefs: %PovBuildDefs%
+  - ECHO PovBuildProj %PovBuildProj%
+  - ECHO PovBuildDefs %PovBuildDefs%
 
 before_build:
 
